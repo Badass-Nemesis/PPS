@@ -1,5 +1,4 @@
-// Question -> https://leetcode.com/problems/regular-expression-matching/
-// Question -> https://www.interviewbit.com/problems/regular-expression-ii/
+// Question -> https://practice.geeksforgeeks.org/problems/wildcard-pattern-matching/1
 
 // Note -> different operators, in different things
 class Solution {
@@ -42,7 +41,7 @@ class Solution {
         }
 
         // ab aaya 3 asli case
-        if (s1.charAt(firstP) == s2.charAt(secondP) || s2.charAt(secondP) == '.') {
+        if (s1.charAt(firstP) == s2.charAt(secondP) || s2.charAt(secondP) == '?') {
             return dpArr[firstP][secondP] = recursion(firstP + 1, secondP + 1, s1, s2);
         }
 
@@ -74,19 +73,20 @@ class Solution {
         return 0;
     }
 
-    public boolean isMatch(String s, String p) {
-        dpArr = new int[2533][2533];
-        for (int i = 0; i < 2533; i++) {
-            for (int j = 0; j < 2533; j++) {
+    int wildCard(String p, String s) {
+        dpArr = new int[201][201];
+        for (int i = 0; i < 201; i++) {
+            for (int j = 0; j < 201; j++) {
                 dpArr[i][j] = -1;
             }
         }
         int ans = recursion(0, 0, s, p);
+        return ans;
 
-        if (ans > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        // if (ans > 0) {
+        // return true;
+        // } else {
+        // return false;
+        // }
     }
 }
