@@ -1,6 +1,8 @@
 // Question -> https://practice.geeksforgeeks.org/problems/wildcard-pattern-matching/1
+// Question -> https://leetcode.com/problems/wildcard-matching/description/
+// Question -> https://www.interviewbit.com/problems/regular-expression-match/
 
-// Note -> different operators, in different things
+// Note -> different operators, in different things. and also interviewbit and leetcode gives TLE, for not using table DP
 class Solution {
     static int[][] dpArr;
 
