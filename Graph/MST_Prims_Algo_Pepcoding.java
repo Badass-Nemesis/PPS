@@ -25,7 +25,7 @@ class Solution {
         }
 
         public int compareTo(Pair other) {
-            return other.wt - this.wt;
+            return this.wt - other.wt;
         }
     }
 
