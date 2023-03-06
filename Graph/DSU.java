@@ -18,11 +18,16 @@ public class DSU {
 
         if (rank[i] > rank[j]) {
             par[j] = i;
+            // rank[i] += rank[j]; // <------- this
         } else if (rank[i] < rank[j]) {
             par[i] = j;
+            // rank[j] += rank[i]; // <------- this
         } else if (rank[i] == rank[j]) {
             par[i] = j;
             rank[i]++;
+            // rank[i] += rank[j]; // <------- and this
+            // these are lines written by shuv bhaiya and others. dunno why they added the
+            // whole rank, but it's ok I think
         }
     }
 }

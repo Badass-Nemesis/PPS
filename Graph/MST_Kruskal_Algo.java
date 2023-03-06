@@ -19,11 +19,16 @@ public class MST_Kruskal_Algo {
         if (leaderX != leaderY) {
             if (rank[leaderX] > rank[leaderY]) {
                 parent[leaderY] = leaderX;
+                // rank[leaderX] += rank[leaderY]; // <------- this
             } else if (rank[leaderX] < rank[leaderY]) {
                 parent[leaderX] = leaderY;
+                // rank[leaderY] += rank[leaderX]; // <------- this
             } else {
                 parent[leaderX] = leaderY;
                 rank[leaderY]++;
+                // rank[leaderY] += rank[leaderX]; // <------- and this
+                // these are lines written by shuv bhaiya and others. dunno why they added the
+                // whole rank, but it's ok I think
             }
 
             return true;
