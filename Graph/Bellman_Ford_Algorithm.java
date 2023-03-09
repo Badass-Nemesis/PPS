@@ -1,0 +1,67 @@
+// Question -> https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1
+
+import java.util.*;
+
+// User function Template for Java
+
+/*
+*   edges: vector of vectors which represents the graph
+*   S: source vertex to start traversing graph with
+*   V: number of vertices
+*/
+class Solution {
+    // FUNFACT -> NEITHER OF THEM WORKS. PEPCODING's CODE GIVES WA FOR DETECTING
+    // CYCLE, and SHUV BHAIYA's CODE GIVES WA ON TESTCASE 6 FOR WHATEVER REASON
+
+    // this is shuv bhaiya's code
+    static int[] bellman_ford2(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+        int t = V - 1;
+        int[] dist = new int[V];
+        Arrays.fill(dist, 100000000);
+        dist[S] = 0;
+        while (t-- > 0) {
+            int[] updated = dist;
+            for (ArrayList<Integer> edge : edges) {
+                int u = edge.get(0); // edge starting point
+                int v = edge.get(1); // edge going to point
+                int wt = edge.get(2); // weight of that edge
+
+                updated[v] = Math.min(updated[v], dist[u] + wt);
+            }
+
+            if (updated == dist) {
+                break;
+            }
+
+            dist = updated;
+        }
+
+        return dist;
+    }
+
+    // this is pepcoding's code
+    static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+        // Write your code here
+        int[] path = new int[V];
+        Arrays.fill(path, 100000000);
+        path[S] = 0;
+
+        for (int i = 0; i < V - 1; i++) {
+            for (ArrayList<Integer> edge : edges) {
+                int u = edge.get(0); // edge starting point
+                int v = edge.get(1); // edge going to point
+                int wt = edge.get(2); // weight of that edge
+
+                if (path[u] == 100000000) {
+                    continue;
+                }
+
+                if (path[v] > path[u] + wt) {
+                    path[v] = path[u] + wt;
+                }
+            }
+        }
+
+        return path;
+    }
+}
