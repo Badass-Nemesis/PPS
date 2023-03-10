@@ -10,6 +10,50 @@ import java.util.*;
 *   V: number of vertices
 */
 class Solution {
+    // FINALLY THIS CODE WORKED.
+    // Credits to Striver chacha.
+    public static int[] bellman_ford3(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+        int iterations = V - 1;
+        int[] dist = new int[V];
+        Arrays.fill(dist, 100000000);
+        dist[S] = 0;
+
+        while (iterations-- > 0) {
+            for (ArrayList<Integer> edge : edges) {
+                int u = edge.get(0);
+                int v = edge.get(1);
+                int wt = edge.get(2);
+
+                if (dist[u] == 100000000) {
+                    continue;
+                }
+
+                if (dist[v] > dist[u] + wt) {
+                    dist[v] = dist[u] + wt;
+                }
+            }
+        }
+
+        int[] tempDist = dist;
+        for (ArrayList<Integer> edge : edges) {
+            int u = edge.get(0);
+            int v = edge.get(1);
+            int wt = edge.get(2);
+
+            if (tempDist[u] == 100000000) {
+                continue;
+            }
+
+            if (tempDist[v] > tempDist[u] + wt) {
+                int[] temp = new int[1];
+                temp[0] = -1;
+                return temp;
+            }
+        }
+
+        return dist;
+    }
+
     // FUNFACT -> NEITHER OF THEM WORKS. PEPCODING's CODE GIVES WA FOR DETECTING
     // CYCLE, and SHUV BHAIYA's CODE GIVES WA ON TESTCASE 6 FOR WHATEVER REASON
 
